@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authenticate</title>
+</head>
+
+<body>
+    <script type="module">
+        import { AuthClient } from '@dfinity/auth-client';
+
+        async function authenticate() {
+            const authClient = await AuthClient.create();
+            await authClient.login({
+                identityProvider: 'https://identity.ic0.app',  // 실제 아이덴티티 프로바이더 URL 사용
+                onSuccess: () => {
+                    const identity = authClient.getIdentity();
+                    window.opener.postMessage({ identity }, window.location.origin);
+                    window.close();
+                }
+            });
+        }
+
+        authenticate();
+    </script>
+</body>
+
+</html>

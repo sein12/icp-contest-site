@@ -51,24 +51,19 @@ const App: React.FC = () => {
   const [identity, setIdentity] = useState<any>(null);
 
   useEffect(() => {
-    const authenticate = async () => {
-      const authClient = await AuthClient.create();
-      const isAuthenticated = await authClient.isAuthenticated();
-
-      if (!isAuthenticated) {
-        await authClient.login({
-          identityProvider: process.env.REACT_APP_IDENTITY_PROVIDER,
-          onSuccess: () => {
-            setIdentity(authClient.getIdentity());
-          }
-        });
-      } else {
-        setIdentity(authClient.getIdentity());
-      }
-    };
-
-    authenticate();
+    authenticate();  // 애플리케이션이 시작될 때마다 인증 요청
   }, []);
+
+  const authenticate = async () => {
+    const authClient = await AuthClient.create();
+    await authClient.login({
+      identityProvider: process.env.REACT_APP_IDENTITY_PROVIDER,
+      onSuccess: () => {
+        setIdentity(authClient.getIdentity());
+      },
+      windowOpenerFeatures: `width=500,height=500,left=${(window.innerWidth - 500) / 2},top=${(window.innerHeight - 500) / 2}`
+    });
+  };
 
   const handleSendMessage = (message: Message) => {
     setChannels({
