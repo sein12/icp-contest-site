@@ -1,0 +1,78 @@
+.sidebar {
+    width: 240px;
+    background-color: #2f3136;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header {
+    padding: 16px;
+    border-bottom: 1px solid #202225;
+}
+
+.sidebar-channels {
+    flex: 1;
+    padding: 8px;
+}
+
+.channels-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 8px;
+    padding-left: 8px;
+}
+
+.channels-header h3 {
+    flex-grow: 1;
+    /* Add this line */
+}
+
+.sidebar-channels ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar-channels li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    cursor: pointer;
+    position: relative;
+}
+
+.sidebar-channels li:hover .delete-channel-button {
+    display: inline;
+}
+
+.sidebar-channels li:hover,
+.sidebar-channels li.active {
+    background-color: #40444b;
+}
+
+.add-channel-button {
+    padding: 6px 10px;
+    border-radius: 4px;
+    border: none;
+    background-color: #7289da;
+    color: white;
+    cursor: pointer;
+}
+
+.add-channel-button:hover {
+    background-color: #5b6eae;
+}
+
+.delete-channel-button {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.delete-channel-button:hover {
+    color: red;
+}
